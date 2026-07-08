@@ -14,8 +14,8 @@ function ItemCard({
         <h3>{item.name}</h3>
 
         <p>
-          Quantity: <strong>{item.quantity}</strong>
-        </p>
+  Quantity: <strong>{item.quantity} {item.unit}</strong>
+</p>
 
         <p>
           Category: <strong>{item.category}</strong>

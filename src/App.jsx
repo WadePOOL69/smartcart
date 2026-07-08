@@ -67,20 +67,20 @@ function App() {
   const itemToEdit = items.find((item) => item.id === id);
 
   const newName = prompt("Edit item name:", itemToEdit.name);
-
-  if (newName === null || newName.trim() === "") return;
+  if (!newName) return;
 
   const newQuantity = prompt(
     "Edit quantity:",
     itemToEdit.quantity
   );
+  if (!newQuantity || isNaN(newQuantity)) return;
 
-  if (
-    newQuantity === null ||
-    isNaN(newQuantity) ||
-    Number(newQuantity) <= 0
-  )
-    return;
+  const newUnit = prompt(
+    "Edit unit (pcs, kg, g, L, ml, dozen, pack, box):",
+    itemToEdit.unit
+  );
+
+  if (!newUnit) return;
 
   setItems((prevItems) =>
     prevItems.map((item) =>
@@ -89,6 +89,7 @@ function App() {
             ...item,
             name: newName.trim(),
             quantity: Number(newQuantity),
+            unit: newUnit,
           }
         : item
     )
